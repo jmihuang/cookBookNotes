@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>尋找並強調所有符合樣式</title>
+</head>
+<body>
+	<div id="SearchResult"></div>
+</body>
+</html>
+<script>
+	var str = 'Now is the tim,this is the tame end';
+	var re = /t\w{2}e*/g;
+	var matchArray;
+	var resultStr = '<b>';
+	var first = 0; 
+	var last = 0;
+	while((matchArray = re.exec(str)) != null){
+	   first = matchArray.index;
+	  //加入非匹配字串
+	   resultStr += str.substring(first,last);
+	  
+	  //加入匹配字串
+	   resultStr += '<span style="color:red;">'+ matchArray[0] + '</span>';
+	   last = re.lastIndex;
+	  console.log(resultStr);
+	}
+	//加入字尾
+	resultStr += str.substring(last,str.length);
+	resultStr += '</b>';
+	document.getElementById('SearchResult').innerHTML = resultStr;
+</script>
